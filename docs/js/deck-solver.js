@@ -146,6 +146,36 @@ function evaluateWithCharacter(comboCards, character, requestedSkillsOriginal, r
   };
 }
 
+function compareResults(a, b) {
+  if (a.coverage_count !== b.coverage_count) {
+    return b.coverage_count - a.coverage_count;
+  }
+
+  if (a.missing_skills.length !== b.missing_skills.length) {
+    return a.missing_skills.length - b.missing_skills.length;
+  }
+
+  if (a.cards_used !== b.cards_used) {
+    return a.cards_used - b.cards_used;
+  }
+
+  if (a.total_units_used !== b.total_units_used) {
+    return a.total_units_used - b.total_units_used;
+  }
+
+  if (a.combo_strength !== b.combo_strength) {
+    return b.combo_strength - a.combo_strength;
+  }
+
+  const aHasCharacter = a.character ? 0 : 1;
+  const bHasCharacter = b.character ? 0 : 1;
+  if (aHasCharacter !== bHasCharacter) {
+    return aHasCharacter - bHasCharacter;
+  }
+
+  return 0;
+}
+
 function pickBestCharacterForCards(comboCards, allCharacters, requestedSkillsOriginal, requestedSkillsSet) {
   const candidates = [null, ...allCharacters];
   let best = null;
@@ -158,30 +188,7 @@ function pickBestCharacterForCards(comboCards, allCharacters, requestedSkillsOri
       requestedSkillsSet
     );
 
-    if (!best) {
-      best = current;
-      continue;
-    }
-
-    const currentKey = [
-      -current.coverage_count,
-      current.missing_skills.length,
-      current.cards_used,
-      current.total_units_used,
-      -current.combo_strength,
-      current.character ? 0 : 1,
-    ];
-
-    const bestKey = [
-      -best.coverage_count,
-      best.missing_skills.length,
-      best.cards_used,
-      best.total_units_used,
-      -best.combo_strength,
-      best.character ? 0 : 1,
-    ];
-
-    if (JSON.stringify(currentKey) < JSON.stringify(bestKey)) {
+    if (!best || compareResults(current, best) < 0) {
       best = current;
     }
   }
@@ -370,27 +377,12 @@ export function solveDeck({
   }
 
   uniqueResults.sort((a, b) => {
-    const keyA = [
-      -a.coverage_count,
-      a.missing_skills.length,
-      a.cards_used,
-      a.total_units_used,
-      -a.combo_strength,
-      a.character ? 0 : 1,
-      a.cards.map((card) => card.card_name).join(", "),
-    ];
+    const priorityComparison = compareResults(a, b);
+    if (priorityComparison !== 0) return priorityComparison;
 
-    const keyB = [
-      -b.coverage_count,
-      b.missing_skills.length,
-      b.cards_used,
-      b.total_units_used,
-      -b.combo_strength,
-      b.character ? 0 : 1,
-      b.cards.map((card) => card.card_name).join(", "),
-    ];
-
-    return JSON.stringify(keyA).localeCompare(JSON.stringify(keyB));
+    const cardsA = a.cards.map((card) => card.card_name).join(", ");
+    const cardsB = b.cards.map((card) => card.card_name).join(", ");
+    return cardsA.localeCompare(cardsB);
   });
 
   return {
