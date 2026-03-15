@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uma Musume Skill Deck Builder</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <h1>Uma Musume Skill Deck Builder</h1>
+      <p>Selecione skills, ajuste preferências e gere decks de cartas com sugestão opcional de personagem para maximizar a cobertura.</p>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <h2>Configuração</h2>
+
+        <div class="toolbar">
+          <input
+            type="text"
+            id="skillSearch"
+            class="search-input"
+            placeholder="Buscar skill..."
+          />
+          <button id="clearSelectionBtn" class="secondary-btn" type="button">
+            Limpar seleção
+          </button>
+        </div>
+
+        <div class="selected-box">
+          <div class="selected-header">
+            <strong>Skills selecionadas</strong>
+            <span id="selectedCount" class="muted">0</span>
+          </div>
+          <div id="selectedSkills" class="selected-skills">
+            <span class="muted">Nenhuma skill selecionada.</span>
+          </div>
+        </div>
+
+        <div id="skillsList" class="skills-list">
+          <p class="muted">Carregando skills...</p>
+        </div>
+
+        <div class="config-grid">
+          <div class="config-card">
+            <label for="cardCount" class="config-label">Quantidade máxima de cartas</label>
+            <div class="input-shell">
+              <input
+                id="cardCount"
+                class="styled-input"
+                type="number"
+                min="1"
+                max="6"
+                value="3"
+              />
+            </div>
+          </div>
+
+          <div class="config-card">
+            <label for="rarityPreference" class="config-label">Prioridade de raridade</label>
+            <div class="input-shell">
+              <select id="rarityPreference" class="styled-input">
+                <option value="SSR,SR,R">SSR &gt; SR &gt; R</option>
+                <option value="SR,R,SSR">SR &gt; R &gt; SSR</option>
+                <option value="SR,SSR,R">SR &gt; SSR &gt; R</option>
+                <option value="R,SR,SSR">R &gt; SR &gt; SSR</option>
+                <option value="R,SSR,SR">R &gt; SSR &gt; SR</option>
+                <option value="SSR,R,SR">SSR &gt; R &gt; SR</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="selected-box">
+
+        <div class="selected-header">
+          <strong>Personagens bloqueadas</strong>
+          <span id="blockedCharactersCount" class="muted">0</span>
+        </div>
+
+        <div class="toolbar">
+          <input
+            type="text"
+            id="characterSearch"
+            class="search-input"
+            placeholder="Buscar personagem para bloquear..."
+          />
+          <button id="clearCharacterSearchBtn" class="secondary-btn" type="button">
+            Limpar
+          </button>
+        </div>
+
+        <div id="charactersSearchResults" class="skills-list character-list">
+          <p class="muted">Digite para buscar personagens.</p>
+        </div>
+
+        <div id="blockedCharacters" class="selected-skills">
+          <span class="muted">Nenhuma personagem bloqueada.</span>
+        </div>
+      </div>
+
+        <div class="selected-box">
+          <div class="selected-header">
+            <strong>Cartas bloqueadas</strong>
+            <span id="blockedCardsCount" class="muted">0</span>
+          </div>
+          <div id="blockedCards" class="selected-skills">
+            <span class="muted">Nenhuma carta bloqueada.</span>
+          </div>
+        </div>
+
+
+        <button id="generateBtn" class="primary-btn" type="button">
+          Gerar combinações
+        </button>
+      </section>
+
+      <section class="panel">
+        <h2>Resultado</h2>
+        <div id="results">
+          <p class="muted">Nenhuma busca realizada.</p>
+        </div>
+      </section>
+    </main>
+ </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
