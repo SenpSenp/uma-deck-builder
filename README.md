@@ -1,41 +1,81 @@
 # Uma Musume Skill Deck Builder
 
-A web application to help players build **optimal support card decks**
-for **Uma Musume: Pretty Derby** based on desired skills.
+A web application designed to generate **optimized combinations of support cards and characters** based on selected skills.
 
-The tool allows users to select skills and automatically generates the
-**best combinations of support cards and characters** that maximize the
-coverage of those skills.
+This project focuses on combining **data processing, algorithm design, and backend performance** to efficiently compute the best possible deck configurations.
 
-🌐 **Live version:**\
+🌐 Live version:
 https://senpsenp.github.io/uma-deck-builder/
 
-------------------------------------------------------------------------
+---
 
-# Features
+## 🚀 Overview
 
--   🔍 Search and select skills
--   🧠 Generate optimal support card deck combinations
--   👤 Suggest the best character for each deck
--   ⭐ Configure rarity priority (SSR / SR / R)
--   🔒 Block specific cards or characters from appearing
--   💾 Persist blocked cards and characters using `localStorage`
--   📊 Show skill coverage and missing skills
--   ⚡ Fast calculations performed by a FastAPI backend
+The system processes structured data and applies a custom algorithm to determine optimal combinations that maximize skill coverage.
 
-------------------------------------------------------------------------
+It allows users to define constraints and dynamically adjusts the results based on filtering and prioritization rules.
 
-# License
+---
 
-This project is provided for **educational and personal use**.
+## ⚙️ How It Works
+
+* Raw data is collected and structured into JSON datasets
+* A curation step filters and refines relevant data
+* A custom algorithm generates and ranks combinations
+* Results are dynamically adjusted using user-defined filters
+
+---
+
+## 🧠 Key Features
+
+* Skill-based search and selection
+* Generation of optimized combinations
+* Dynamic filtering (rarity, exclusions, constraints)
+* Coverage analysis (matched vs missing skills)
+* Persistent user preferences (localStorage)
+* FastAPI backend for efficient computation
+
+---
+
+## 🛠️ Technologies
+
+* Python
+* FastAPI
+* JavaScript
+* JSON
+* HTML/CSS
+
+---
+
+## 📊 Technical Highlights
+
+* Processing of ~5000 raw data entries
+* Data curation reducing dataset to ~800 optimized entries
+* Custom combination and ranking algorithm
+* Focus on performance and scalability of calculations
+
+---
+
+## 📌 Purpose
+
+This is a personal project focused on exploring:
+
+* Algorithm design
+* Data processing pipelines
+* Backend performance optimization
+
+---
+
+## 📄 License
+
+This project is provided for educational and personal use.
 
 Uma Musume: Pretty Derby and related assets belong to **Cygames**.
 
-## Feedback & Contact
+---
 
-I am open to suggestions, feedback, or improvements for the project.
+## 📫 Contact
 
-If you would like to share ideas or report issues, feel free to contact
-me on Discord:
+Open to feedback and suggestions.
 
-**vtubersaregoodforyourlife**
+Discord: **vtubersaregoodforyourlife**
